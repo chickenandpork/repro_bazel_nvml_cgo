@@ -1,0 +1,15 @@
+load("@gazelle//:def.bzl", "gazelle")
+load("@rules_go//go:def.bzl", "go_test")
+
+# gazelle:prefix github.com/chickenandpork/repro_bazel_nvml_cgo
+gazelle(name = "gazelle")
+
+go_test(
+    name = "repro_bazel_nvml_cgo_test",
+    srcs = ["nvml_test.go"],
+    deps = [
+        "@com_github_nvidia_go_nvml//pkg/nvml",
+        "@com_github_stretchr_testify//assert:go_default_library",
+    ],
+    cgo = True,
+)
